@@ -1,0 +1,31 @@
+<main class="main">
+    <table id="t01" border="1">
+        <thead>
+            <tr>
+                <th>Onum</th>
+                <th>stars</th>
+                <th>paid</th>
+                <th>appetizer</th>
+                <th>main_course</th>
+                <th>dessert</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#if rows.length }}
+            {{#each rows }}
+            <tr>
+                <td>{{ this.Onum }}</td>
+                <td>{{ this.stars }}</td>
+                <td>{{ this.paid }}</td>
+                <td>{{ this.appetizer }}</td>
+                <td>{{ this.main_course }}</td>
+                <td>{{ this.dessert }}</td>
+            </tr>
+            {{/ each}}
+            {{ else}}
+            <tr><td colspan="6"><p class='lead'><em>No records were found.</em></p></td></tr>
+            {{/if}}
+        </tbody>
+    </table>
+
+</main>

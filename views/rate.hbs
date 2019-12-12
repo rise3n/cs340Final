@@ -1,0 +1,22 @@
+<main class="main">
+    <div class="graph">
+        <div class="picture">
+            <img src='/asset/pictures/OSU.JPG' alt="" width="500" height="500">
+            <i>this is picture description</i>
+        </div>
+
+    </div>
+
+    <form method="post" id="rate">
+        <input type="number" name="mid" id="mid" value=0><br>
+        <input type="number" name="stars" id="stars" value=0><br>
+        <input type="text" name="reason" id="reason" value="reason"><br>
+        <input type="submit" value="rate" id="rate_button">
+        
+    </form>
+
+    <button type="button" id="lowest", onclick="getlowest()">see who got the highest score</button>
+
+    
+    <script src="/asset/submitform.js"></script>
+</main>

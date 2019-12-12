@@ -1,58 +1,59 @@
 const config = require('./src/config');
 
-module.exports = {
-
-    createViewContext: (identity, obj) => {
+function createViewContext(identity, obj) {
         if (identity == 'manager') {
-            Object.assign(
-                {
-                    menuitems: [
-                        { location: '/see_Employee', Pagename: 'see_Employee' },
-                        { location: '/register', Pagename: 'register' },
-                        { location: '/check', Pagename: 'check' }
-                    ]
-                },
-                obj
-            )
+            var items = {
+                Pagename: 'Manager',
+                menuitem: [
+                    { location: 'see_employee', Linkename: 'AllEmployees' },
+                    { location: 'register', Linkename: 'Register' },
+                    { location: 'check', Linkename: 'Check' }
+                ]
+            }
+            var newobj = new Object(items);
+
+            Object.assign(obj, newobj, obj);
         }
+
         else if (identity == 'employee') {
+            var items = {
+                Pagename: 'Employee',
+                menuitem: [
+                    { location: 'rate', Linkename: 'rate' },
+                    { location: 'schedule', Linkename: 'schedule' }
+                ]
+            }
+            var newobj = new Object(items);
 
-            Object.assign(
-                {
-                    menuitems: [
-                        { location: '/rate', Pagename: 'rate' },
-                        { location: '/schedule', Pagename: 'schedule' }
-                    ]
-                },
-                obj
-            )
+            Object.assign(obj, newobj, obj); 
 
         }
-        else if (identity == 'viewer') {
-            Object.assign(
-                {
-                    menuitems: [
-                        { location: '/menu', Pagename: 'menu' },
-                        { location: '/login', Pagename: 'login' }
-                    ]
-                },
-                obj
-            )
 
+        else if (identity == 'viewer') {
+            var items = {
+                Pagename: 'Home',
+                menuitem: [
+                    { location: '/menu', Linkename: 'menu' },
+                    { location: '/about', Linkename: 'about' }
+                ]
+            }
+            var newobj = new Object(items);
+
+            Object.assign(obj,newobj, obj);
         }
 
         else {
+            var items = {
+                Pagename: 'Chef',
+                menuitem: [
+                    { location: '/edit_recipe', Linkename: 'Edit_recipe' }
+                ]
+            }
+            var newobj = new Object(items);
 
-            Object.assign(
-                {
-                    menuitems: [
-                        { location: '/editRecipe', Pagename: 'editRecipe' }
-                    ]
-                },
-                obj
-            )
-
+            Object.assign(obj, newobj, obj);
         }
-    }
-};
+}
+
+module.exports = { createViewContext };
 

@@ -1,0 +1,30 @@
+<main class="main">
+    <table id="t01" border="1">
+        <thead>
+            <tr>
+                <th>price</th>
+                <th>Menu_description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#if rows.length }}
+            {{#each rows }}
+            <tr>
+                <td>{{this.price}}</td>
+                <td>{{this.menu_description}}</td>
+            </tr>
+            {{/each}}
+            {{else}}
+            <tr><td colspan="2"><p class='lead'><em>No records were found.</em></p></td></tr>
+            {{/if}}
+        </tbody>
+    </table>
+
+    <form method="post" id="seeIngredient">
+        <input type="text" name="rid" id="rid" value="please input dish ID">
+        <button type="submit" id="seebutton">seeIngredient</button>
+
+    </form>
+
+
+</main>

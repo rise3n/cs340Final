@@ -4,20 +4,36 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const config = require('./src/config');
 const path = require('path');
-const navGenerator = require('./navGenerator');
+const nav = require('./navGenerator');
+const menu = require('./src/menu');
+const login = require('./src/login');
+const see_Employee = require('./src/see_Employee');
+const register = require('./src/register');
+const check = require('./src/check');
+const rate = require('./src/rate');
+const schedule = require('./src/schedule');
+//const editRecipe = require('./src/editRecipe');
+
 const PORT = process.env.PORT || 3000;
 
 const app = express();
+
+var hbs = exphbs.create({
+    defaultLayout: 'main',
+    extname: '.hbs'
+});
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, "views"));
 
-app.use('/update', express.static('src'));//all sql in src
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use('/asset', express.static('asset'));
 
 //create connection
 app.use((req, res, next) => {
-    console.log("request for menu");
+    //console.log("request for data");
     let connection = mysql.createConnection({
         host: config.host,
         user: config.user,
@@ -26,23 +42,34 @@ app.use((req, res, next) => {
     });
     connection.connect((err) => {
         if (err) return next();
+        
         req.db = connection;
         next();
     });
 });
 
-app.use('/menu', require('./menu.js'));
-app.use('/login', require('./login.js'));
-app.use('/see_Employee', require('./see_Employee.js'));
-app.use('/register', require('./register.js'));
-app.use('/check',require('CheckRecord.js'));
-app.use('/rate', require('rate.js'));
-app.use('/schedule', require('schedule.js'));
-app.use('/editRecipe', require('editRecipe.js'));
+//app.use(editRecipe);
+app.use(schedule);
+app.use(rate);
+app.use(check);
+app.use(see_Employee);
+app.use(register);
+app.use(login);
+app.use(menu);
+
 app.get('/', function (req, res) {
-    res.status(200).render(navGenerator('viewer'));
+    var obj = new Object();
+    nav.createViewContext('viewer', obj);
+    res.status(200).render('home', obj);
+});
+
+app.get('/about', function (req, res) {
+    var obj = new Object();
+    nav.createViewContext('viewer', obj);
+    res.status(200).render('about', obj);
 });
 
 app.listen(PORT, () => {
     console.log('final project server is listening on port ' + PORT);
 });
+

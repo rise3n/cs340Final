@@ -1,0 +1,25 @@
+<main class="main">
+    <table id="t01" border="1">
+        <thead>
+            <tr>
+                <th>mid</th>
+                <th>manager name</th>
+                <th>average</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#if rows.length }}
+            {{#each rows }}
+            <tr>
+                <td>{{this.mid}}</td>
+                <td>{{this.mname}}</td>
+                <td>{{this.average}}</td>
+            </tr>
+            {{/each}}
+            {{else}}
+            <tr><td colspan="3"><p class='lead'><em>No records were found.</em></p></td></tr>
+            {{/if}}
+        </tbody>
+    </table>
+
+</main>

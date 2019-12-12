@@ -1,0 +1,24 @@
+
+<main class="main">
+    <table id="t01" border="1">
+        <thead>
+            <tr>
+                <th>eid</th>
+                <th>ename</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#if rows.length }}
+            {{#each rows }}
+            <tr>
+                <td>{{this.eid}}</td>
+                <td>{{this.ename}}</td>
+            </tr>
+            {{/each}}
+            {{else}}
+            <tr><td colspan="2"><p class='lead'><em>No records were found.</em></p></td></tr>
+            {{/if}}
+        </tbody>
+    </table>
+
+</main>

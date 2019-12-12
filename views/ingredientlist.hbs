@@ -1,0 +1,23 @@
+<main class="main">
+    <table id="t01" border="1">
+        <thead>
+            <tr>
+                <th>amount</th>
+                <th>Menu_description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#if rows.length }}
+            {{#each rows }}
+            <tr>
+                <td>{{this.amount}}</td>
+                <td>{{this.menu_description}}</td>
+            </tr>
+            {{/each}}
+            {{else}}
+            <tr><td colspan="2"><p class='lead'><em>No records were found.</em></p></td></tr>
+            {{/if}}
+        </tbody>
+    </table>
+
+</main>
