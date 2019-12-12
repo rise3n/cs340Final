@@ -25,7 +25,7 @@ menuRouter.post('/menu', (req, res, next) => {
     nav.createViewContext('viewer', obj);
     console.log(req.body.rid);
 
-    req.db.query('SELECT distinct iid, amount from Ingredient as I, Recipe as R, `use` as U where U.rid =? and U.iid = I.iid',
+    req.db.query('SELECT distinct U.iid, amount from Ingredient as I, Recipe as R, `use` as U where U.rid =? and U.iid = I.iid',
         [req.body.rid], (err, results) => {
             if (err) return next(err);
 
